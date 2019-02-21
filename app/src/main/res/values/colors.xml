@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f7f8f8</color>
+    <color name="colorPrimaryDark">#f1f1f1</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorFilterFrame">#588ae9</color>
+    <color name="colorFilterSelectedBackground">#eef3fe</color>
+
+    <!--Text-->
+    <color name="colorTextFilters">#7b7b7b</color>
+    <color name="colorTextFilterSelected">#588ae9</color>
+    <color name="colorTextTitle">#000000</color>
+    <color name="colorTextBannerDesc">#4f5b63</color>
+    <color name="colorTextGroupOffer">#646469</color>
+    <color name="colorTextOfferDesc">#808080</color>
+
+    <!--Views-->
+    <color name="banner_desc_container">#ccffffff</color>
+    <color name="offer_group_background">#efeff4</color>
+    <color name="colorPrice">#ee7c78</color>
+    <color name="button_delete_offer_background">#ea3223</color>
+    <color name="colorDivider">#cdcdcd</color>
+
+</resources>

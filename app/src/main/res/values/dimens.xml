@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Padding-->
+    <dimen name="padding_default">17dp</dimen>
+    <dimen name="padding_S">8dp</dimen>
+    <dimen name="padding_XS">4dp</dimen>
+
+    <!--Elevation-->
+    <dimen name="default_elevation">4dp</dimen>
+    <dimen name="large_elevation">5dp</dimen>
+
+    <!--Corners-->
+    <dimen name="corner_radius_default">4dp</dimen>
+    <dimen name="corner_radius_large">7dp</dimen>
+    <dimen name="corner_radius_XL">20dp</dimen>
+
+    <!--View sizes-->
+    <dimen name="size_search_view">48dp</dimen>
+    <dimen name="size_icon_default">18dp</dimen>
+    <dimen name="size_banner_container_width">235dp</dimen>
+    <dimen name="size_banner_container_height">156dp</dimen>
+    <dimen name="size_banner_image_width">235dp</dimen>
+    <dimen name="size_banner_image_height">156dp</dimen>
+    <dimen name="size_button_delete_offer">86dp</dimen>
+    <dimen name="size_image_offer_height">86dp</dimen>
+    <dimen name="size_image_offer_width">119dp</dimen>
+
+    <!--Strokes & dividers-->
+    <dimen name="size_divider_offers">1dp</dimen>
+    <dimen name="size_stroke_filter">1dip</dimen>
+    <!--Text-->
+    <dimen name="size_text_XS">12sp</dimen>
+    <dimen name="size_text_S">13sp</dimen>
+    <dimen name="size_text_S_large">14sp</dimen>
+    <dimen name="size_text_info_button">24sp</dimen>
+    <dimen name="size_text_M">16sp</dimen>
+
+</resources>

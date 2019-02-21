@@ -1,0 +1,106 @@
+<com.daimajia.swipe.SwipeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/cardviewOffer">
+
+    <ImageView
+        android:background="#ea3223"
+        android:id="@+id/bottom_wrapper"
+        android:layout_width="@dimen/size_button_delete_offer"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/trash"
+        android:scaleType="center"/>
+
+    <android.support.constraint.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:background="@drawable/dummy"
+        android:padding="4dp"
+        >
+
+        <ImageView
+            android:id="@+id/offerImageMainContainer"
+            android:layout_width="@dimen/size_image_offer_width"
+            android:layout_height="90dp"
+            android:layout_marginStart="@dimen/padding_default"
+            android:layout_marginTop="@dimen/padding_default"
+            android:layout_marginBottom="@dimen/padding_default"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:textColor="@color/colorPrice"
+            android:textSize="@dimen/size_text_S_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/offerActualPriceTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/padding_default"
+            tools:text="55Р" app:layout_constraintBottom_toBottomOf="@+id/offerImageMainContainer"/>
+
+        <TextView
+            android:id="@+id/offerTitleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_default"
+            android:textColor="@color/colorTextTitle"
+            android:textSize="@dimen/size_text_M"
+            app:layout_constraintEnd_toEndOf="@+id/offerActualPriceTextView"
+            app:layout_constraintStart_toEndOf="@+id/offerImageMainContainer"
+            app:layout_constraintTop_toTopOf="@+id/offerImageMainContainer"
+            tools:text="Заголовок" />
+
+        <TextView
+            android:id="@+id/offerSubtitleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxLines="2"
+            android:textColor="@color/colorTextOfferDesc"
+            android:textSize="@dimen/size_text_S_large"
+            app:layout_constraintEnd_toEndOf="@+id/offerTitleTextView"
+            app:layout_constraintStart_toStartOf="@+id/offerTitleTextView"
+            app:layout_constraintTop_toBottomOf="@+id/offerTitleTextView"
+            tools:text="Подзаголовок" />
+
+        <ImageView
+            android:id="@+id/buttonAddToBasket"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/offerImageMainContainer"
+            app:layout_constraintStart_toStartOf="@+id/offerTitleTextView"
+            app:layout_constraintTop_toBottomOf="@+id/offerSubtitleTextView"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@mipmap/basket" />
+        <TextView
+            android:paddingStart="@dimen/padding_S"
+            android:paddingEnd="@dimen/padding_S"
+            android:gravity="center"
+            android:background="@drawable/percent_shape"
+            android:textColor="@color/colorWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/offerPercentsTextView"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonAddToBasket"
+            app:layout_constraintTop_toTopOf="@+id/buttonAddToBasket"
+            android:layout_marginStart="@dimen/padding_default"
+            app:layout_constraintStart_toEndOf="@+id/buttonAddToBasket"
+            tools:text="-50%"/>
+        <TextView
+            android:textSize="@dimen/size_text_XS"
+            android:textColor="@color/colorTextOfferDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/offerOldPriceTextView"
+            app:layout_constraintEnd_toEndOf="@+id/offerActualPriceTextView"
+            app:layout_constraintStart_toStartOf="@+id/offerActualPriceTextView"
+            tools:text="60Р"
+            app:layout_constraintBottom_toTopOf="@+id/offerActualPriceTextView"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</com.daimajia.swipe.SwipeLayout>
