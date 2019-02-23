@@ -113,7 +113,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="5dc3ff" />
+                                                <entry key="color" value="000000" />
                                                 <entry key="paddingPercent" value="10" />
                                               </map>
                                             </option>
@@ -125,7 +125,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/E:/Program%20Files/Program/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_shopping_basket_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/E:/Program%20Files/Program/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_clear_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -138,7 +138,7 @@
                                       <entry key="backgroundColor" value="e1ddd2" />
                                       <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="CIRCLE" />
-                                      <entry key="outputName" value="basket" />
+                                      <entry key="outputName" value="close" />
                                     </map>
                                   </option>
                                 </PersistentState>

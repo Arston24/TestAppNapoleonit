@@ -2,6 +2,7 @@ package ru.arston.practice.testappnapoleonit
 
 import android.app.DownloadManager
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.gson.Gson
@@ -36,22 +39,23 @@ class MainActivity : AppCompatActivity() {
     var banners = listOf<BannerModel>()
     lateinit var linearLayout: LinearLayout
     private lateinit var offerAdapter: OfferAdapter
-
-
+    private lateinit var imageView: ImageView
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //offerList.layoutManager = LinearLayoutManager(this)
-        //val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         val myList = findViewById(R.id.recyclerBanner) as RecyclerView
         myList.layoutManager = layoutManager
 
-
         linearLayout = findViewById(R.id.inner_recyclerView)
+        imageView = findViewById(R.id.info_image)
+        imageView.setOnClickListener {
+            val intent = Intent(this, InfoActivity:: class.java)
+            startActivity(intent)
+        }
 
         fetchJson()
     }
@@ -148,4 +152,5 @@ class MainActivity : AppCompatActivity() {
         var bannerAdapter: BannerAdapter = BannerAdapter(param)
         recyclerBanner.setAdapter(bannerAdapter)
     }
+
 }
