@@ -1,24 +1,14 @@
-package ru.arston.practice.testappnapoleonit
+package ru.arston.practice.testappnapoleonit.NapoleonAPI.Adapters
 
-import android.app.PendingIntent.getActivity
 import android.content.Context
-import android.graphics.Paint
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import com.daimajia.swipe.SwipeLayout
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_main.*
 import ru.arston.practice.testappnapoleonit.NapoleonAPI.BannerModel
 import ru.arston.practice.testappnapoleonit.NapoleonAPI.OfferModel
-import java.text.DecimalFormat
-import ru.arston.practice.testappnapoleonit.MainAdapter.HorizontalViewHolder
-import ru.arston.practice.testappnapoleonit.MainAdapter.VerticalViewHolder
-
+import ru.arston.practice.testappnapoleonit.R
 
 
 class MainAdapter(offerList: List<OfferModel>) :
@@ -48,18 +38,18 @@ class MainAdapter(offerList: List<OfferModel>) :
         when (id) {
             VERTICAL -> {
                 view = LayoutInflater.from(parent.context)
-                        .inflate(ru.arston.practice.testappnapoleonit.R.layout.vertical_card, parent, false)
+                        .inflate(R.layout.vertical_card, parent, false)
                 holder = VerticalViewHolder(view)
             }
             HORIZONTAL -> {
                 view = LayoutInflater.from(parent.context)
-                        .inflate(ru.arston.practice.testappnapoleonit.R.layout.horizontal_card, parent, false)
+                        .inflate(R.layout.horizontal_card, parent, false)
                 holder = HorizontalViewHolder(view)
             }
 
             else -> {
                 view = LayoutInflater.from(parent.context)
-                        .inflate(ru.arston.practice.testappnapoleonit.R.layout.horizontal_card, parent, false)
+                        .inflate(R.layout.horizontal_card, parent, false)
                 holder = HorizontalViewHolder(view)
             }
         }

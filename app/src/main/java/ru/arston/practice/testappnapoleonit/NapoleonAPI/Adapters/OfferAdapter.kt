@@ -1,9 +1,6 @@
-package ru.arston.practice.testappnapoleonit
+package ru.arston.practice.testappnapoleonit.NapoleonAPI.Adapters
 
-import android.app.PendingIntent.getActivity
-import android.content.Context
 import android.graphics.Paint
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.daimajia.swipe.SwipeLayout
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_main.*
-import ru.arston.practice.testappnapoleonit.NapoleonAPI.BannerModel
 import ru.arston.practice.testappnapoleonit.NapoleonAPI.OfferModel
+import ru.arston.practice.testappnapoleonit.R
 import java.text.DecimalFormat
 
 

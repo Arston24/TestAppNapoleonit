@@ -1,31 +1,25 @@
 package ru.arston.practice.testappnapoleonit
 
-import android.app.DownloadManager
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.FontsContract.Columns.RESULT_CODE_OK
 import android.support.annotation.RequiresApi
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
-import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.recycle.*
-import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.arston.practice.testappnapoleonit.NapoleonAPI.Adapters.BannerAdapter
+import ru.arston.practice.testappnapoleonit.NapoleonAPI.Adapters.OfferAdapter
 import ru.arston.practice.testappnapoleonit.NapoleonAPI.Api
 import ru.arston.practice.testappnapoleonit.NapoleonAPI.BannerModel
 import ru.arston.practice.testappnapoleonit.NapoleonAPI.OfferModel
@@ -55,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         imageView.setOnClickListener {
             val intent = Intent(this, InfoActivity:: class.java)
             startActivity(intent)
+
         }
 
         fetchJson()
@@ -131,6 +126,10 @@ class MainActivity : AppCompatActivity() {
         linearLayout.addView(textView)
     }
 
+    /**
+     * Запускает адаптер для OfferModel
+     * @param param список всех оферов
+     */
     fun runAdapter(param: List<OfferModel>) {
 
         val offerView = layoutInflater.inflate(

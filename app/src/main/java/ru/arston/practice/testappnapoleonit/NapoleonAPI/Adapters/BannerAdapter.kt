@@ -1,19 +1,14 @@
-package ru.arston.practice.testappnapoleonit
+package ru.arston.practice.testappnapoleonit.NapoleonAPI.Adapters
 
-import android.graphics.Paint
 import android.support.v7.widget.CardView
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import com.daimajia.swipe.SwipeLayout
 import com.squareup.picasso.Picasso
 import ru.arston.practice.testappnapoleonit.NapoleonAPI.BannerModel
-import ru.arston.practice.testappnapoleonit.NapoleonAPI.OfferModel
-import java.text.DecimalFormat
+import ru.arston.practice.testappnapoleonit.R
 
 
 class BannerAdapter(list: List<BannerModel>) :
