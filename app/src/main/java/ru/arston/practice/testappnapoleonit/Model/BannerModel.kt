@@ -1,4 +1,4 @@
-package ru.arston.practice.testappnapoleonit.NapoleonAPI
+package ru.arston.practice.testappnapoleonit.Model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

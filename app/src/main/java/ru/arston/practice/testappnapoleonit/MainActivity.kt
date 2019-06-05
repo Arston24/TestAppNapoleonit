@@ -2,154 +2,111 @@ package ru.arston.practice.testappnapoleonit
 
 import android.content.Intent
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.annotation.RequiresApi
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
-
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.recycle.*
-import retrofit2.Call
-import retrofit2.Response
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.arston.practice.testappnapoleonit.NapoleonAPI.Adapters.BannerAdapter
-import ru.arston.practice.testappnapoleonit.NapoleonAPI.Adapters.OfferAdapter
+import ru.arston.practice.testappnapoleonit.Adapters.BannerAdapter
+import ru.arston.practice.testappnapoleonit.Adapters.MainAdapter
+import ru.arston.practice.testappnapoleonit.Adapters.OfferAdapter
+import ru.arston.practice.testappnapoleonit.Model.BannerModel
+import ru.arston.practice.testappnapoleonit.Model.OfferModel
 import ru.arston.practice.testappnapoleonit.NapoleonAPI.Api
-import ru.arston.practice.testappnapoleonit.NapoleonAPI.BannerModel
-import ru.arston.practice.testappnapoleonit.NapoleonAPI.OfferModel
-
-
 
 
 class MainActivity : AppCompatActivity() {
+    private val url = "https://s3.eu-central-1.amazonaws.com/sl.files/"
 
     var offers = listOf<OfferModel>()
     var banners = listOf<BannerModel>()
     lateinit var linearLayout: LinearLayout
+    private lateinit var mainAdapter: MainAdapter
+    private lateinit var bannerAdapter: BannerAdapter
     private lateinit var offerAdapter: OfferAdapter
     private lateinit var imageView: ImageView
+    private lateinit var itemOffer: List<OfferModel>
+
+    private lateinit var mainRecyclerView: RecyclerView
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        val myList = findViewById(R.id.recyclerBanner) as RecyclerView
-        myList.layoutManager = layoutManager
+        mainRecyclerView = findViewById(R.id.main_recycler)
+        mainRecyclerView.setHasFixedSize(true)
+        mainRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        linearLayout = findViewById(R.id.inner_recyclerView)
+
         imageView = findViewById(R.id.info_image)
         imageView.setOnClickListener {
-            val intent = Intent(this, InfoActivity:: class.java)
+            val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
 
         }
 
         fetchJson()
     }
-        fun fetchJson() {
 
-        val url = "https://s3.eu-central-1.amazonaws.com/sl.files/"
+    private fun fetchJson() {
 
         var retrofit: Retrofit = Retrofit.Builder()
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(url)
                 .build()
 
-        var apiServices: Api = retrofit.create(Api::class.java)
+        var apiService: Api = retrofit.create(Api::class.java)
 
-        apiServices.getOffers().enqueue(object : retrofit2.Callback<List<OfferModel>> {
-            override fun onFailure(call: Call<List<OfferModel>>, t: Throwable) {
-            }
+        GlobalScope.launch(Dispatchers.Main) {
+            val offersRequest = apiService.getOffers()
+            try {
 
-            override fun onResponse(call: Call<List<OfferModel>>, response: Response<List<OfferModel>>) {
-                offers = response.body()!!
-                initOffers(offers)
-                //runAdapter(offers)
+                val response = offersRequest.await()
+                if (response.isSuccessful) {
 
-            }
+                    val offersResponse = response.body()
+                    itemOffer = offersResponse!!
+//                    offerAdapter = OfferAdapter(itemOffer)
+//                    mainRecyclerView.adapter = offerAdapter
 
-        })
-
-
-        apiServices.getBanners().enqueue(object : retrofit2.Callback<List<BannerModel>> {
-            override fun onFailure(call: Call<List<BannerModel>>, t: Throwable) {
-            }
-
-
-            override fun onResponse(call: Call<List<BannerModel>>, response: Response<List<BannerModel>>) {
-                banners = response.body()!!
-                runAdapterBanner(banners)
-
-                val snapHelper = LinearSnapHelper()
-                snapHelper.attachToRecyclerView(offerList)
-
-            }
-        })
-
-
-    }
-
-    private fun initOffers(offers: List<OfferModel>) {
-        val groups = arrayListOf<String>()
-        val offersList = arrayListOf<OfferModel>()
-        offers.forEach {
-            if (!groups.contains(it.getGroupName())) {
-                groups.add(it.getGroupName())
-            }
-        }
-
-        for (i in 0 until groups.size){
-            val name = groups[i]
-            offers.forEach {
-                if (it.getGroupName() == name){
-                    offersList.add(it)
+                } else {
+                    Log.e("MainActivity ", response.errorBody().toString())
                 }
+            } catch (e: Exception) {
+                println("Ебаа " + e.message)
             }
-            initOfferGroup(name)
-            runAdapter(offersList)
-            offersList.clear()
+
+            val bannersRequest = apiService.getBanners()
+            try {
+                Log.e("MainActivity ", "НЕ Успех")
+
+                val response = bannersRequest.await()
+                if (response.isSuccessful) {
+                    Log.e("MainActivity ", "Успех")
+                    banners = response.body()!!
+                    Log.e("Bnners ", banners[0].image)
+                    mainAdapter = MainAdapter(itemOffer, banners)
+                    mainRecyclerView.adapter = mainAdapter
+
+                } else {
+                    Log.e("MainActivity ", response.errorBody().toString())
+                }
+            } catch (e: Exception) {
+
+            }
+
         }
-    }
-
-    private fun initOfferGroup(title: String) {
-        val textView = layoutInflater.inflate(
-                R.layout.header_item, null)
-        textView.findViewById<TextView>(R.id.header_text).text = title
-        linearLayout.addView(textView)
-    }
-
-    /**
-     * Запускает адаптер для OfferModel
-     * @param param список всех оферов
-     */
-    fun runAdapter(param: List<OfferModel>) {
-
-        val offerView = layoutInflater.inflate(
-                R.layout.recycle, null, false) as RecyclerView
-        offerView.layoutManager = LinearLayoutManager(this)
-        offerAdapter = OfferAdapter(param)
-        offerView.adapter = offerAdapter
-
-
-        linearLayout.addView(offerView)
-        //offerAdapter.notifyDataSetChanged()
-
-        var offerAdapter: OfferAdapter = OfferAdapter(param)
-        offerList.setAdapter(offerAdapter)
-
-    }
-
-    fun runAdapterBanner(param: List<BannerModel>) {
-        var bannerAdapter: BannerAdapter = BannerAdapter(param)
-        recyclerBanner.setAdapter(bannerAdapter)
     }
 
 }

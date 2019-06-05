@@ -1,4 +1,4 @@
-package ru.arston.practice.testappnapoleonit.NapoleonAPI
+package ru.arston.practice.testappnapoleonit.Model
 
 class OfferModel(
 private var id: String,
