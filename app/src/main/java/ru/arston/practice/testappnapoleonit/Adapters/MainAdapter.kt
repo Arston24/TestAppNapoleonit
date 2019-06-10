@@ -60,11 +60,6 @@ class MainAdapter(private val offerList: List<OfferModel>, private val bannerLis
                         .into(offerViewHolder.image)
 
             }
-
-//            CellType.HEADER.ordinal ->{
-//                val headerViewHolder = viewHolder as HeaderViewHolder
-//                headerViewHolder.headerTitle.text = offerList[id-1].getGroupName()
-//            }
         }
     }
 
